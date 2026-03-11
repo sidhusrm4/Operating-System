@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void* myThread(void* arg)
+{
+    printf("Inside the thread\n");
+    printf("Threads are not equal\n");
+    return NULL;
+}
+
+int main()
+{
+    pthread_t t;
+
+    pthread_create(&t, NULL, myThread, NULL);
+
+    printf("This line may be printed before thread terminates\n");
+
+    pthread_join(t, NULL);
+
+    printf("This line will be printed after the thread ends\n");
+
+    return 0;
+}
